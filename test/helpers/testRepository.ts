@@ -1,4 +1,4 @@
-import { Entity } from "@common/seedwork";
+import { Entity } from "@vannatta-software/ts-domain";
 
 export function testRepository<R extends Entity>(e: R, extra: object = {}) {
     return {

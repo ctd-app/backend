@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { EventPublisherService } from '../services/eventPublisher.service';
-import { Entity } from '@common/seedwork';
+import { Entity } from '@vannatta-software/ts-domain';
 
 @Injectable()
 export abstract class BaseRepository<T extends Entity> {

@@ -1,9 +1,5 @@
-import { Example } from '@common/example/Example';
-import { IExampleService } from '@common/example/IExampleService';
-import { ExampleMetadata } from '@common/example/Metadata';
-import { ExampleType } from '@common/example/Type';
-import * as Contracts from '@common/example/contracts';
-import { UniqueIdentifier } from '@common/seedwork';
+import { Example, IExampleService, ExampleMetadata, ExampleType, Contracts } from '@domain/index';
+import { UniqueIdentifier } from '@vannatta-software/ts-domain';
 import { Injectable } from '@nestjs/common';
 import { ExampleRepository } from 'src/repositories/example.repository';
 

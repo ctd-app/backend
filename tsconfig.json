@@ -7,7 +7,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
-    "jsx": "react-jsx",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -19,11 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@common/*": ["../../common/*"],
+      "@domain/*": ["./domain/*"],
     }
+    
   },
   "include": [
-    "./",
-    "../../common", "src/.test", 
+    "./"
   ]
 }

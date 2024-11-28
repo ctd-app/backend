@@ -1,46 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { EventHandler, HandleEvent } from 'src/services/eventPublisher.service';
 import { NotificationService } from 'src/services/notification.service';
+import { Contracts } from "@domain/index";
 
 // ExampleCreatedEvent
-import { ExampleCreatedEvent, ExampleCreatedNotification } from '@common/example/contracts';
 
 @Injectable()
-@HandleEvent(ExampleCreatedEvent)
-export class ExampleCreatedHandler implements EventHandler<ExampleCreatedEvent> {
+@HandleEvent(Contracts.ExampleCreatedEvent)
+export class ExampleCreatedHandler implements EventHandler<Contracts.ExampleCreatedEvent> {
     constructor(private readonly notifications: NotificationService) {}
 
-    handle(event: ExampleCreatedEvent) {
-        this.notifications.notify(new ExampleCreatedNotification(event.exampleId));
+    handle(event: Contracts.ExampleCreatedEvent) {
+        this.notifications.notify(new Contracts.ExampleCreatedNotification(event.exampleId));
     }
 }
 
-// ExampleDeletedEvent
-import { ExampleDeletedEvent, ExampleDeletedNotification } from '@common/example/contracts';
-
 @Injectable()
-@HandleEvent(ExampleDeletedEvent)
-export class ExampleDeletedHandler implements EventHandler<ExampleDeletedEvent> {
+@HandleEvent(Contracts.ExampleDeletedEvent)
+export class ExampleDeletedHandler implements EventHandler<Contracts.ExampleDeletedEvent> {
     constructor(
         private readonly notifications: NotificationService,
     ) {}
 
-    handle(event: ExampleDeletedEvent) {
-        this.notifications.notify(new ExampleDeletedNotification(event.exampleId));
+    handle(event: Contracts.ExampleDeletedEvent) {
+        this.notifications.notify(new Contracts.ExampleDeletedNotification(event.exampleId));
     }
 }
 
-// ExampleMetadataUpdatedEvent
-import { ExampleMetadataNotification, ExampleMetadataUpdatedEvent } from '@common/example/contracts';
-
-@HandleEvent(ExampleMetadataUpdatedEvent)
+@HandleEvent(Contracts.ExampleMetadataUpdatedEvent)
 @Injectable()
-export class ExampleMetadataUpdatedHandler implements EventHandler<ExampleMetadataUpdatedEvent> {
+export class ExampleMetadataUpdatedHandler implements EventHandler<Contracts.ExampleMetadataUpdatedEvent> {
     constructor(
         private readonly notifications: NotificationService,
     ) {}
 
-    handle(event: ExampleMetadataUpdatedEvent) {
-        this.notifications.notify(new ExampleMetadataNotification(event.exampleId, event.metadata));
+    handle(event: Contracts.ExampleMetadataUpdatedEvent) {
+        this.notifications.notify(new Contracts.ExampleMetadataNotification(event.exampleId, event.metadata));
     }
 }

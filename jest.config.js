@@ -27,7 +27,7 @@ module.exports = {
   testRegex: '(test/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
-      "@common/(.*)": "<rootDir>/../../common/$1",
+      "@domain/(.*)": "<rootDir>/domain/$1",
       "src/(.*)": "<rootDir>/src/$1"
   }
 };

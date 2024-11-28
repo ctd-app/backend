@@ -1,8 +1,7 @@
-import { Entity } from '@common/seedwork';
-import { ClassType, StringUtils } from '@common/utils/StringUtils';
+import { Entity, IDomainEvent } from '@vannatta-software/ts-domain';
+import { ClassType, StringUtils } from '@vannatta-software/ts-core';
 import { Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { IDomainEvent } from '@common/seedwork';
 import 'reflect-metadata';
 
 export const EVENT_HANDLER_METADATA = 'EVENT_HANDLER_METADATA';

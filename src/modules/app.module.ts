@@ -8,12 +8,16 @@ import { EventHandlersModule } from 'src/modules/event.module';
 import { EventPublisherService } from 'src/services/eventPublisher.service';
 import { NotificationService } from 'src/services/notification.service';
 import { ExampleModule } from './example.module';
+import { ConfigModule } from '@nestjs/config';
 
-const appRoot = join(__dirname, "..", "..","..", "..", "..", "..")
+console.log(process.env.MONGO_CONNECTION)
+
+const appRoot = join(__dirname)
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({ rootPath: join(appRoot, "frontend", "dist") }),
+    ConfigModule.forRoot(),
+    ServeStaticModule.forRoot({ rootPath: join(appRoot, "public") }),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION, {
       user: process.env.MONGO_INITDB_ROOT_USERNAME,
       pass: process.env.MONGO_INITDB_ROOT_PASSWORD,

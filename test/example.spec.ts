@@ -1,18 +1,14 @@
 import mongoose from 'mongoose';
-import { UniqueIdentifier } from '@common/seedwork';
 import { MongoSchema } from 'src/schemas/mongo.schema';
-import { Example } from '@common/example/Example';
-import { ExampleType } from '@common/example/Type';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExampleService } from 'src/services/example.service';
 import { ExampleRepository } from 'src/repositories/example.repository';
 import { EventPublisherService } from 'src/services/eventPublisher.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { ExampleMetadata } from '@common/example/Metadata';
 import { testRepository } from './helpers/testRepository';
 import { cleanupTests, initializeTests } from './setup.spec';
-import * as Commands from "@common/example/contracts/commands"
-import * as Queries from "@common/example/contracts/queries"
+import { Contracts, Example, ExampleMetadata, ExampleType } from '@domain/index';
+import { UniqueIdentifier } from '@vannatta-software/ts-domain';
   
 const Schema = MongoSchema(Example);
 const Model = mongoose.model(Example.name, Schema);
@@ -88,20 +84,20 @@ describe('ExampleService', () => {
   });
 
   it('should return all examples', async () => {
-    const examples = await service.getAll(new Queries.GetAllExamplesQuery());
+    const examples = await service.getAll(new Contracts.GetAllExamplesQuery());
     expect(examples).toHaveLength(1);
     expect(mockRepository.findAll).toHaveBeenCalled();
   });
 
   it('should return an example by id', async () => {
-    const example = await service.getById(new Queries.GetExampleByIdQuery('existing-id'));
+    const example = await service.getById(new Contracts.GetExampleByIdQuery('existing-id'));
     expect(example).toBeDefined();
     expect(example.id.value).toEqual(defaultExample.id.value);
     expect(mockRepository.findById).toHaveBeenCalled();
   });
 
   it('should create a new example', async () => {
-    const command = new Commands.CreateExampleCommand()
+    const command = new Contracts.CreateExampleCommand()
     command.name = 'New Example';
     command.type = 'Default';
     command.description = 'New Description';
@@ -111,7 +107,7 @@ describe('ExampleService', () => {
   });
 
   it('should update an existing example', async () => {
-    const command = new Commands.UpdateExampleCommand();
+    const command = new Contracts.UpdateExampleCommand();
     command.name = 'Updated Name';
     command.id = defaultExample.id.value;
     command.metadata = { description: 'Updated Description', version: 2 }
@@ -120,14 +116,14 @@ describe('ExampleService', () => {
   });
 
   it('should delete an example', async () => {
-    const command = new Commands.DeleteExampleCommand();
+    const command = new Contracts.DeleteExampleCommand();
     command.id = defaultExample.id.value;
     await service.delete(command);
     expect(mockRepository.delete).toHaveBeenCalled();
   });
 
   it('should update the version of an example', async () => {
-    const command = new Commands.UpdateVersionCommand();
+    const command = new Contracts.UpdateVersionCommand();
     command.id = defaultExample.id.value;
     command.newVersion = 2;
     await service.updateVersion(command);

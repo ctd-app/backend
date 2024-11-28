@@ -1,8 +1,8 @@
-import { GlobalIdentifier } from '@common/seedwork';
+import { GlobalIdentifier } from '@vannatta-software/ts-domain';
+import { SchemaMetadataKey } from '@vannatta-software/ts-core';
 import { v4 as uuid } from "uuid";
 import mongoose from 'mongoose';
 import 'reflect-metadata';
-import { SchemaMetadataKey } from '@common/utils/ReflectionUtils';
 
 export function MongoSchema(targetClass: any, depth = 0): mongoose.Schema | any {
     if (!targetClass || depth > 5 )

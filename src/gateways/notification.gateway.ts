@@ -1,11 +1,10 @@
-import { ClientMap } from '@common/utils/ClientConnection';
 import { Logger } from '@nestjs/common';
+import { Server, Socket, } from 'socket.io';
+import { ClientMap, NotificationService } from '../services/notification.service';
 import {
   OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit,
   SubscribeMessage, WebSocketGateway, WebSocketServer
 } from '@nestjs/websockets';
-import { Server, Socket, } from 'socket.io';
-import { NotificationService } from '../services/notification.service';
 
 @WebSocketGateway({cors: { origin: '*' } })
 export class NotificationGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
