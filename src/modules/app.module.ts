@@ -10,9 +10,7 @@ import { NotificationService } from 'src/services/notification.service';
 import { ExampleModule } from './example.module';
 import { ConfigModule } from '@nestjs/config';
 
-console.log(process.env.MONGO_CONNECTION)
-
-const appRoot = join(__dirname)
+const appRoot = join(__dirname, '..', '..', '..')
 
 @Module({
   imports: [
