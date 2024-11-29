@@ -1,6 +1,6 @@
 {
   "name": "@vannatta-software/ts-domain-example",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "author": "",
   "main": "dist/domain/index.js",
