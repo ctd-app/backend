@@ -1,3 +1,4 @@
 **/*
 
-!dist/domain
+!dist/domain/**/*.ts
+!dist/domain/**/*.js
