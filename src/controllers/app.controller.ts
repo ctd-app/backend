@@ -10,11 +10,4 @@ export class AppController {
       resolve("Healthy")
     });
   }
-
-  @Post("foo/bar")
-  async test(): Promise<string> {
-    return new Promise(resolve => {
-      resolve("Test")
-    });
-  }
 }
